@@ -36,4 +36,4 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return render_template(url_for("main.index"))
+    return redirect(url_for("main.index"))    
