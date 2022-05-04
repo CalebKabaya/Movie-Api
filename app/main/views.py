@@ -1,15 +1,9 @@
-from flask import render_template
-# from app import create_app
-from flask import render_template,request,redirect,url_for
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..request import get_movies,get_movie,search_movie
 from .forms import ReviewForm
-from ..models import Review
+from ..models import Review,User
 from flask_login import login_required
-
-
-
 
 
 
@@ -100,21 +94,15 @@ def movie(id):
     return render_template('movie.html',title = title, movie = movie, reviews = reviews)
 
 
-# def movie(id):
-#     '''
-#     View movie page function that returns the movie details page and its data
-#     '''
-#     movie = get_movie(id) 
-#     title = f'{movie.title}' 
-#     reviews = Review.get_reviews(movie.id)
-#     return render_template('movie.html', title = title, movie = movie, reviews = reviews)
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+    return render_template("profile/profile.html",user =user)   
 
 
-# @app.route('/movie/<movie_id>')
-# def movie(movie_id):
-
-#     '''
-#     View movie page function that returns the movie details page and its data
-#     '''
-#     title = f'You are viewing {movie_id}'
-#     return render_template('movie.html',title = title)    
+    
+     
+   
