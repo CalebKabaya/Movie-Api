@@ -13,6 +13,7 @@ from flask_login import login_required
 
 
 
+
 # Views
 @main.route('/')
 def index():
@@ -50,20 +51,40 @@ def search(movie_name):
     return render_template('search.html',movies = searched_movies)
 
 @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-@login_required
 def new_review(id):
+
     form = ReviewForm()
+
     movie = get_movie(id)
 
     if form.validate_on_submit():
         title = form.title.data
         review = form.review.data
+
         new_review = Review(movie.id,title,movie.poster,review)
         new_review.save_review()
-        return redirect(url_for('movie',id = movie.id ))
+
+        return redirect(url_for('.movie',id = movie.id ))
 
     title = f'{movie.title} review'
     return render_template('new_review.html',title = title, review_form=form, movie=movie)
+# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+# @login_required
+# def new_review(id):
+#     form = ReviewForm()
+#     movie = get_movie(id)
+
+#     if form.validate_on_submit():
+#         title = form.title.data
+#         review = form.review.data
+#         new_review = Review(movie.id,title,movie.poster,review)
+#         new_review.save_review()
+#         return redirect(url_for('movie',id = movie.id ))
+#         # return redirect(url_for('movie',id = main.movie ))
+
+
+#     title = f'{movie.title} review'
+#     return render_template('new_review.html',title = title, review_form=form, movie=movie)
 
 
 @main.route('/movie/<int:id>')
