@@ -13,6 +13,8 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Mbuguack@localhost/watchlist'
 
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
+
 
 
 
