@@ -1,0 +1,12 @@
+#titles{
+    color: white;
+    height: 40px;
+    padding: 0;
+}
+#movie-title{
+    font-size: 20px;
+    width: 100%;
+}
+.titlediv{
+    background-color: rgb(42, 2, 2);
+}
