@@ -29,8 +29,8 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     simple.init_app(app)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fgfemgmaasoydr:0a90fa47c39317cd6b93176b666e548c933b178a81236dfff6be871c11436a65@ec2-52-71-69-66.compute-1.amazonaws.com:5432/d1urukq66e4a8h'
 
-     
     # Registering the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
