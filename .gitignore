@@ -1,4 +1,7 @@
 virtual/
 *.pyc
 instace/
-start.sh/
+.start.sh
+__pycache__/
+env/
+.env
