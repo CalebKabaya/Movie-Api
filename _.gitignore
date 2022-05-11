@@ -1,3 +1,4 @@
-virtual/
+virtual
 *.pyc
-instace/
+instace
+start.sh
